@@ -11,7 +11,7 @@
   background-color: var(--muted);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
   .card {
     max-width: 100%;
     gap: 8px;
