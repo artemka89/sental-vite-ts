@@ -7,6 +7,7 @@ export interface Route {
 class AppRouter {
   private container: HTMLElement | null = null;
   private routes: Route[] = [];
+  private hasCratedRouter = false;
 
   public createRouter = (routes: Route[], container: HTMLElement) => {
     this.routes = routes;
@@ -27,6 +28,7 @@ class AppRouter {
     });
 
     this.handleLocation();
+    this.hasCratedRouter = true;
   };
 
   public createLink = ({
@@ -73,8 +75,12 @@ class AppRouter {
 
     for (const route of this.routes) {
       if (path === route.path || path === route.redirect) {
-        if (route.redirect) {
-          history.pushState(route.redirect, "", route.redirect);
+        if (route.redirect && !this.hasCratedRouter) {
+          history.pushState(
+            route.redirect,
+            "",
+            `${route.redirect}${location.search}`
+          );
         }
         const element = route.element();
         this.container.innerHTML = "";
