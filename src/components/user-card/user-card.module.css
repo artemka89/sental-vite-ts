@@ -1,0 +1,70 @@
+.card {
+  max-width: 200px;
+  flex-basis: 30%;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background-color: var(--muted);
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    max-width: 100%;
+    gap: 8px;
+  }
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.repoLink {
+  position: relative;
+}
+
+.repoLink::before {
+  position: absolute;
+  content: "";
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background-color: var(--primary);
+  transform: scale(0);
+  transition: transform 0.2s ease-in-out;
+}
+
+@media (hover: hover) {
+  .repoLink:hover::before {
+    transform: scale(1);
+  }
+}
+
+.username {
+  padding: 0;
+  margin: 0;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-lg);
+}
+
+.infoItem {
+  padding: 8px 0;
+  font-size: var(--font-size-md);
+}
+
+@media screen and (max-width: 992px) {
+  .infoList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0 48px;
+  }
+}

@@ -1,0 +1,46 @@
+.repoWrapper {
+  width: 100%;
+  max-height: 344px;
+  overflow-y: auto;
+}
+
+.repoWrapper::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+.repoWrapper::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: var(--muted);
+}
+
+.repoWrapper::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: var(--border);
+}
+
+.repoList {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.repoItem {
+  height: 54px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--muted);
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: border 0.3s ease;
+}
+
+@media (hover: hover) {
+  .repoItem:hover {
+    border: 1px solid var(--border);
+  }
+}
