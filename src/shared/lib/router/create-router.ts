@@ -1,6 +1,7 @@
 export interface Route {
   path: string;
   element: () => HTMLElement;
+  redirect?: string;
 }
 
 class AppRouter {
@@ -68,13 +69,28 @@ class AppRouter {
   };
 
   private handleLocation = (path = location.pathname) => {
-    Object.values(this.routes).forEach(async (route) => {
-      if (path === route.path && this.container) {
+    if (!this.container) return;
+
+    for (const route of this.routes) {
+      if (path === route.path || path === route.redirect) {
+        if (route.redirect) {
+          history.pushState(route.redirect, "", route.redirect);
+        }
         const element = route.element();
         this.container.innerHTML = "";
         this.container.appendChild(element);
+        return;
+      } else {
+        const element = this.routes
+          .find((route) => route.path === "*")
+          ?.element();
+
+        if (element) {
+          this.container.innerHTML = "";
+          this.container.appendChild(element);
+        }
       }
-    });
+    }
   };
 }
 
