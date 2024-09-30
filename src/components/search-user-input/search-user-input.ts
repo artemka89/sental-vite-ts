@@ -72,7 +72,7 @@ export const SearchUserInput = ({
         (entries) => {
           if (
             isLoading ||
-            currentPage >= totalPages ||
+            currentPage > totalPages ||
             !searchingItemList.hasChildNodes()
           )
             return;
